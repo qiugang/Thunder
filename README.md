@@ -1,32 +1,53 @@
 # Thunder
 
+[![](https://jitpack.io/v/qiugang/Thunder.svg)](https://jitpack.io/#qiugang/Thunder)
+
 Android OkHttp util package let response callback at MainThread(UIThread), also it‘s lifecycle safety.
 
 ⚠️ Thunder‘s code is based on [SugarTask](https://github.com/mthli/SugarTask)(Very nice code👍)
 
 Support Android API 14 and UP.
 
+## Gradle
+
+At your root `build.gradle` file:
+
+```groovy
+repositories {
+    // ...
+    maven { url 'https://jitpack.io' }
+}
+```
+
+And then at your application `build.gradle` file:
+
+```groovy
+dependencies {
+    compile 'com.github.qiugang:Thunder:v0.1'
+}
+```
+
 ## Usage
 
 At your MainThread(UIThread), start OkHttp request just like this:
 
 ```java
-        Thunder.with(this)
-            .assign(new CallBuilder().url("https://raw.github.com/square/okhttp/master/README.md")
+Thunder.with(this)
+    .assign(new CallBuilder().url("https://raw.github.com/square/okhttp/master/README.md")
                             .buildGet())
-            .finish(new Thunder.ResponseCallBack() {
-                @Override
-                public void onResponse(ResponseData response) {
-                    // handle response here
-                    }
-                })
-            .broken(new Thunder.FailureCallBack() {
-                @Override
-                public void onFailure(Exception e) {
-                    // handle exception here
-                }
-            })
-            .execute();
+    .finish(new Thunder.ResponseCallBack() {
+        @Override
+        public void onResponse(ResponseData response) {
+            // handle response here
+        }
+    })
+    .broken(new Thunder.FailureCallBack() {
+        @Override
+        public void onFailure(Exception e) {
+        // handle exception here
+        }
+    })
+    .execute();
 ```
 
 ## Thanks
