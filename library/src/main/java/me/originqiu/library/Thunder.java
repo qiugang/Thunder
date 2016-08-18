@@ -188,12 +188,6 @@ public class Thunder {
         }
     }
 
-    /*
-     * SugarTask begin from this, it looks like this:
-     * SugarTask.with().assign().handle().finish().broken().execute();
-     * 链式调用从这里开始，形式看上去差不是这样的：
-     * SugarTask.with().assign().handle().finish().broken().execute();
-     */
     @MainThread
     public static Register with(@NonNull Activity activity) {
         getInstance().registerHookToContext(activity);
